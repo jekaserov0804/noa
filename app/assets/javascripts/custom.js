@@ -4,61 +4,54 @@
 
     // Config
     //-------------------------------------------------------------------------------
-    var companyName = 'Spa and Wellness Center';
-    var address = '3861 Sepulveda Blvd., Culver City, CA 90230'; // Enter your Address
+    // var companyName = 'Spa and Wellness Center';
+    // var address = '3861 Sepulveda Blvd., Culver City, CA 90230'; // Enter your Address
 
 
-    // // Parallax Scrolling
-    // //-------------------------------------------------------------
-    // var $w = $(window);
-    // var newsletterSimple = $('.newsletter-simple');
-    // var productInfo = $('.product-info');
-    //
-    // function move($c) {
-    //     var offset = $c.offset().top;
-    //     var scroll = $w.scrollTop();
-    //     var diff = offset - scroll;
-    //     var pos = 'center ' + (-diff)*0.2 + 'px';
-    //     $c.css({'backgroundPosition':pos});
-    // }
-    // $w.bind('scroll', function(e){
-    //     move(newsletterSimple);
-    //     move(productInfo);
-    // });
+    // Parallax Scrolling
+    //-------------------------------------------------------------
+    var $w = $(window);
+    var newsletterSimple = $('.newsletter-simple');
+    var productInfo = $('.product-info');
 
-    //
-    // Preloader
-    //-------------------------------------------------------------------------------
-    window.onscroll = function () {
-        window.scrollTo(0, 0);
-    };
-
-    $(window).load(function () {
-        setTimeout(function () {
-            window.onscroll = function () {};
-            $('#page-preloader').addClass('slideOutUp');
-
-            // Fix for IE 9
-            setTimeout(function () {
-                $('#page-preloader').addClass('hidden');
-            }, 700);
-
-        }, 100);
-
+    function move($c) {
+        var offset = $('body').offset().top;
+        var scroll = $w.scrollTop();
+        var diff = offset - scroll;
+        var pos = 'center ' + (-diff)*0.2 + 'px';
+        $c.css({'backgroundPosition':pos});
+    }
+    $w.bind('scroll', function(e){
+        move(newsletterSimple);
+        move(productInfo);
     });
 
+    //
+    // // Preloader
+    // //-------------------------------------------------------------------------------
+    // window.onscroll = function () {
+    //     window.scrollTo(0, 0);
+    // };
+    //
+    // $(window).load(function () {
+    //     setTimeout(function () {
+    //         window.onscroll = function () {};
+    //         $('#page-preloader').addClass('slideOutUp');
+    //
+    //         // Fix for IE 9
+    //         setTimeout(function () {
+    //             $('#page-preloader').addClass('hidden');
+    //         }, 700);
+    //
+    //     }, 100);
+    //
+    // });
 
-    // // Initialize Tooltip
-    // //-------------------------------------------------------------
+
+    // Initialize Tooltip
+    //-------------------------------------------------------------
     // $('.my-tooltip').tooltip();
 
-
-    // // Initialize Datetimepicker
-    // //-------------------------------------------------------------------------------
-    // $('.datepicker').datepicker().on('changeDate', function () {
-    //     $(this).datepicker('hide');
-    // });
-    //
 
     // Show Appointment Modal
     //-------------------------------------------------------------------------------
@@ -70,7 +63,7 @@
         $('#appointmentModal').modal('show');
         return false;
     });
-    //
+
 
     // // Scroll To Animation
     // //-------------------------------------------------------------------------------
@@ -319,49 +312,49 @@
     // Load Contact Gmap
     //-------------------------------------------------------------
 
-    var geocoder;
-    var map;
-    var draggable = true;
-
-    geocoder = new google.maps.Geocoder();
-
-    var mapOptions = {
-        zoom: 12,
-        draggable: draggable,
-        mapTypeControl: false,
-        center: new google.maps.LatLng(0, 0),
-        mapTypeId: google.maps.MapTypeId.ROADMAP
-    }
-
-    map = new google.maps.Map(document.getElementById('contact-map'), mapOptions);
-
-    var contentString = '<div id="content">' +
-        '<strong>'+companyName+'</strong><br>' +
-        'Address: 3861 Sepulveda Blvd., Culver City, CA 90230 ' +
-        '</div>';
-
-    var infowindow = new google.maps.InfoWindow({
-        content: contentString
-    });
-
-    geocoder.geocode({'address': address}, function (results, status) {
-        if (status == google.maps.GeocoderStatus.OK) {
-            map.setCenter(results[0].geometry.location);
-            var marker = new google.maps.Marker({
-                map: map,
-                position: results[0].geometry.location,
-                icon: 'img/mapmarker.png',
-                title: 'Uluru (Ayers Rock)'
-            });
-
-            google.maps.event.addListener(marker, 'click', function () {
-                infowindow.open(map, marker);
-            });
-
-        } else {
-            alert('Geocode was not successful for the following reason: ' + status);
-        }
-    });
+    // var geocoder;
+    // var map;
+    // var draggable = true;
+    //
+    // geocoder = new google.maps.Geocoder();
+    //
+    // var mapOptions = {
+    //     zoom: 12,
+    //     draggable: draggable,
+    //     mapTypeControl: false,
+    //     center: new google.maps.LatLng(0, 0),
+    //     mapTypeId: google.maps.MapTypeId.ROADMAP
+    // };
+    //
+    // map = new google.maps.Map(document.getElementById('contact-map'), mapOptions);
+    //
+    // var contentString = '<div id="content">' +
+    //     '<strong>'+companyName+'</strong><br>' +
+    //     'Address: 3861 Sepulveda Blvd., Culver City, CA 90230 ' +
+    //     '</div>';
+    //
+    // var infowindow = new google.maps.InfoWindow({
+    //     content: contentString
+    // });
+    //
+    // geocoder.geocode({'address': address}, function (results, status) {
+    //     if (status == google.maps.GeocoderStatus.OK) {
+    //         map.setCenter(results[0].geometry.location);
+    //         var marker = new google.maps.Marker({
+    //             map: map,
+    //             position: results[0].geometry.location,
+    //             icon: 'img/mapmarker.png',
+    //             title: 'Uluru (Ayers Rock)'
+    //         });
+    //
+    //         google.maps.event.addListener(marker, 'click', function () {
+    //             infowindow.open(map, marker);
+    //         });
+    //
+    //     } else {
+    //         alert('Geocode was not successful for the following reason: ' + status);
+    //     }
+    // });
 
 
 // end document ready
